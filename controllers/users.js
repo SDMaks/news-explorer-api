@@ -1,13 +1,10 @@
-/* eslint-disable consistent-return */
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// const mongoose = require('mongoose');
 const userSchema = require('../models/user');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const InBaseNotFound = require('../errors/InBaseNotFound'); // 404
-// const BadRequest = require('../errors/badRequest');
 const ErrorUniqueUser = require('../errors/errorUniqueUser'); // 409
 
 module.exports.findUserId = (req, res, next) => {
@@ -31,7 +28,6 @@ module.exports.createUser = (req, res, next) => {
   const {
     name, email, password,
   } = req.body;
-  // console.log(req.body);
   bcrypt.hash(password, 10)
     .then((hash) => userSchema.create({
       name,

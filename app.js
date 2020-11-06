@@ -13,6 +13,7 @@ const router = require('./routes/index.js');
 
 // const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
 
@@ -48,21 +49,6 @@ app.use(router);
 app.use(errorLogger); // подключаем логгер ошибок
 
 app.use(errors());
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  // если у ошибки нет статуса, выставляем 500
-  const { statusCode = 500, message } = err;
-  if (err.name === 'ValidationError') {
-    return res.status(400).send({ message: 'Невалидный запрос' });
-  }
-  return res
-    .status(statusCode)
-    .send({
-      // проверяем статус и выставляем сообщение в зависимости от него
-      message: statusCode === 500
-        ? 'На сервере произошла ошибка'
-        : message,
-    });
-});
 
+app.use(errorMiddleware);
 app.listen(PORT);
