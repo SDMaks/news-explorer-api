@@ -17,7 +17,7 @@ const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
 
-const { PORT = 3220, NEWS_BASE = 'mongodb://localhost:27017/newsdb' } = process.env;
+const { PORT = 3200, NEWS_BASE = 'mongodb://localhost:27017/newsdb' } = process.env;
 
 mongoose.connect(NEWS_BASE, {
   useNewUrlParser: true,
