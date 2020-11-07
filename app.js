@@ -14,6 +14,7 @@ const router = require('./routes/index.js');
 // const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorMiddleware = require('./middlewares/errorMiddleware');
+const nonExistedUrl = require('./middlewares/nonExistedUrl');
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.get('/crash-test', () => {
 });
 
 app.use(router);
+app.use('*', nonExistedUrl); // обработка несуществующего url
 
 app.use(errorLogger); // подключаем логгер ошибок
 
