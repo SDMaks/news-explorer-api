@@ -1,10 +1,10 @@
-const errorMiddleware = (err, req, res) => {
+const errorMiddleware = (err, req, res, next) => {
   // если у ошибки нет статуса, выставляем 500
   const { statusCode = 500, message } = err;
   if (err.name === 'ValidationError') {
-    return res.status(400).send({ message: 'Невалидный запрос' });
+    res.status(400).send({ message: 'Невалидный запрос' });
   }
-  return res
+  res
     .status(statusCode)
     .send({
       // проверяем статус и выставляем сообщение в зависимости от него
@@ -12,6 +12,7 @@ const errorMiddleware = (err, req, res) => {
         ? 'На сервере произошла ошибка'
         : message,
     });
+  next();
 };
 
 module.exports = errorMiddleware;

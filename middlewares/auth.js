@@ -5,13 +5,16 @@ const AuthorizedError = require('../errors/authorizedError');
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports = (req, res, next) => {
-  const { authorization } = req.headers;
-
-  if (!authorization || !authorization.startsWith('Bearer ')) {
+  if (req.headers.cookie === undefined) {
+    return next(new AuthorizedError('Необходима авторизация'));
+  }
+  const token = req.headers.cookie.replace('jwt=', '');
+  if (!token) {
     return next(new AuthorizedError('Необходима авторизация'));
   }
 
-  const token = authorization.replace('Bearer ', '');
+  // const token = authorization.replace('Bearer ', '');
+  // console.log(token)
   let payload;
 
   try {

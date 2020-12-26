@@ -56,9 +56,13 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           sameSite: true,
         })
-        .send({ token });
+        .send({ name: `${user.name}`, token });
     })
     .catch((err) => {
       next(err);
     });
+};
+
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Пользователь разлогинен' });
 };
