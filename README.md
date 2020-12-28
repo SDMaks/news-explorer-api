@@ -59,7 +59,7 @@ require('crypto').randomBytes(32).toString('hex'))
 
 ## **Актуальная версия проекта**
 
-***v.0.0.7***
+***v.0.0.8***
 
 ## **Как запустить проект**
 1. _Локально_:
@@ -67,8 +67,8 @@ require('crypto').randomBytes(32).toString('hex'))
 
 2. _Через публичные адреса_:
 Через Postman делать запросы по адресам:
-+ https://www.api.sdnews.students.nomoreparties.space
-+ https://api.sdnews.students.nomoreparties.space
++ https://www.api.emnews.students.nomoreparties.space
++ https://api.emnews.students.nomoreparties.space
 
 
 
