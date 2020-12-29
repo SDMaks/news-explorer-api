@@ -35,20 +35,22 @@ const whiteList = [
   'https://www.emnews.students.nomoreparties.space',
   'https://emnews.students.nomoreparties.space',
   'https://api.emnews.students.nomoreparties.space',
-  'https://sdmaks.github.io/news-explorer-frontend/',
+  'https://sdmaks.github.io/news-explorer-frontend',
   'https://www.api.sdnews.students.nomoreparties.space',
   'https://api.sdnews.students.nomoreparties.space',
 ];
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (whiteList.includes(origin) || !origin) {
+  origin: function (origin, callback) {
+    if (whiteList.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('Not allowed by CORS'))
     }
   },
   credentials: true,
+  allowedHeaders: 'Content-Type',
+  optionsSuccessStatus: 200,
 };
 
 app.use(limiter);
