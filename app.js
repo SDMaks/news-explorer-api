@@ -35,6 +35,7 @@ const whiteList = [
   'https://www.emnews.students.nomoreparties.space',
   'https://emnews.students.nomoreparties.space',
   'https://api.emnews.students.nomoreparties.space',
+  'https://sdmaks.github.io/news-explorer-frontend/',
   'https://www.api.sdnews.students.nomoreparties.space',
   'https://api.sdnews.students.nomoreparties.space',
 ];
